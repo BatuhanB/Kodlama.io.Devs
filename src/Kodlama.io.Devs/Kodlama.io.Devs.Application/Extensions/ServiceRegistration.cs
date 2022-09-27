@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Rules;
 using MediatR;
@@ -15,6 +16,7 @@ namespace Kodlama.io.Devs.Application.Extensions
             services.AddAutoMapper(assembly);
             services.AddValidatorsFromAssembly(assembly);
             services.AddScoped<ProgrammingLanguageBusinessRules>();
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             return services;
         }
     }

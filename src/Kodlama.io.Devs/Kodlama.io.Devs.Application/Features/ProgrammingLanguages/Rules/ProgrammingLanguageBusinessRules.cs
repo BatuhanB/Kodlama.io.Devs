@@ -18,4 +18,10 @@ public class ProgrammingLanguageBusinessRules
         var result = await _programmingLanguageRepository.GetListAsync(x => x.Name == name);
         if (result.Items.Any()) throw new BusinessException(Messages.DuplicateNameError);
     }
+
+    public async Task ProgrammingLanguageShouldExistWhenRequested(int id)
+    {
+        var result = await _programmingLanguageRepository.GetAsync(x => x.Id == id);
+        if (result == null) throw new BusinessException(Messages.RequestedIdShouldExistError);
+    }
 }

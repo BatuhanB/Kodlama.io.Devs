@@ -3,7 +3,7 @@ using Kodlama.io.Devs.Domain.Entities;
 
 namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Create;
 
-public class CreateProgrammingLanguageCommandValidator:AbstractValidator<ProgrammingLanguage>
+public class CreateProgrammingLanguageCommandValidator:AbstractValidator<CreateProgrammingLanguageCommand>
 {
     public CreateProgrammingLanguageCommandValidator()
     {
