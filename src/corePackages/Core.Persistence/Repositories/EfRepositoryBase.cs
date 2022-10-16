@@ -16,12 +16,17 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
     {
         Context = context;
     }
+    
 
-    public async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate)
+    public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate,
+                                           Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
     {
-        return await Context.Set<TEntity>().FirstOrDefaultAsync(predicate);
-    }
+        TEntity? item = include == null
+                      ? await Context.Set<TEntity>().FirstOrDefaultAsync(predicate)
+                      : await include(Context.Set<TEntity>()).FirstOrDefaultAsync(predicate);
 
+        return item;
+    }
     public async Task<IPaginate<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? predicate = null,
                                                        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy =
                                                            null,

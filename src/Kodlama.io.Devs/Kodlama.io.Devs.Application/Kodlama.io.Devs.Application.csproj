@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Teckhnologies\**" />
+    <EmbeddedResource Remove="Features\Teckhnologies\**" />
+    <None Remove="Features\Teckhnologies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Features\ProgrammingLanguages\Commands\Create\" />
     <Folder Include="Features\ProgrammingLanguages\Commands\Delete\" />
     <Folder Include="Features\ProgrammingLanguages\Dtos\" />

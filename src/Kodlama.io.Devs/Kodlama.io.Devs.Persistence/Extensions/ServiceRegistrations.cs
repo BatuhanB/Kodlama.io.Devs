@@ -14,6 +14,7 @@ public static class ServiceRegistrations
         services.AddDbContext<BaseDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("Kodlama.io.Devs")));
         services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
+        services.AddScoped<ITechnologyRepository,TechnologyRepository>();
         return services;
     }
 }

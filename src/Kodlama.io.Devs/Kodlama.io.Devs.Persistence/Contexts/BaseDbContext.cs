@@ -9,6 +9,7 @@ public class BaseDbContext : DbContext
 {
     protected IConfiguration Configuration { get; set; }
     public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+    public DbSet<Technology> Technologies { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
     {
