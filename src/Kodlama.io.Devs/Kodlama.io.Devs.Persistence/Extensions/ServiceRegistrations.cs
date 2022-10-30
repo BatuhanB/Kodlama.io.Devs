@@ -15,6 +15,12 @@ public static class ServiceRegistrations
             options.UseSqlServer(configuration.GetConnectionString("Kodlama.io.Devs")));
         services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
         services.AddScoped<ITechnologyRepository,TechnologyRepository>();
+
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserOperationClaimRepository,UserOperationClaimRepository>();
+        services.AddScoped<IOperationClaimRepository,OperationClaimRepository>();
+        services.AddScoped<IRefreshTokenRepository,RefreshTokenRepository>();
+
         return services;
     }
 }

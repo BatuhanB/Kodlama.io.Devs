@@ -5,8 +5,6 @@ using Kodlama.io.Devs.Application.Features.Technologies.Commands.Delete;
 using Kodlama.io.Devs.Application.Features.Technologies.Commands.Update;
 using Kodlama.io.Devs.Application.Features.Technologies.Dtos;
 using Kodlama.io.Devs.Application.Features.Technologies.Models;
-using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetById;
-using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetList;
 using Kodlama.io.Devs.Domain.Entities;
 
 namespace Kodlama.io.Devs.Application.Features.Technologies.Profiles
