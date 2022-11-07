@@ -19,7 +19,7 @@ namespace Kodlama.io.Devs.Application.Features.Technologies.Commands.Delete
 
         public async Task<DeletedTechnologyDto> Handle(DeletedTechnologyCommand request, CancellationToken cancellationToken)
         {
-            var mappedTechnology = _mapper.Map<Technology>(request);
+            var mappedTechnology = await _technologyRepository.GetAsync(x=>x.Id == request.Id);
             var deletedTechnology = await _technologyRepository.DeleteAsync(mappedTechnology);
             var deletedTechnologyDto = _mapper.Map<DeletedTechnologyDto>(deletedTechnology);
             return deletedTechnologyDto;

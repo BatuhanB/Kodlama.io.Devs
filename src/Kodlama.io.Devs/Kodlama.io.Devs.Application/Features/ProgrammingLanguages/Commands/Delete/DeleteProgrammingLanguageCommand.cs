@@ -5,5 +5,5 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Del
 
 public class DeleteProgrammingLanguageCommand:IRequest<DeletedProgrammingLanguageDto>
 {
-    public string Name { get; set; }
+    public int Id { get; set; }
 }

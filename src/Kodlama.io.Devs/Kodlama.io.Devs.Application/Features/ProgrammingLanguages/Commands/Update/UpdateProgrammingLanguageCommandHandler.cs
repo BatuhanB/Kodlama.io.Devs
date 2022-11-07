@@ -19,7 +19,8 @@ public class UpdateProgrammingLanguageCommandHandler:IRequestHandler<UpdateProgr
 
     public async Task<UpdatedProgrammingLanguageDto> Handle(UpdateProgrammingLanguageCommand request, CancellationToken cancellationToken)
     {
-        var mappedProgrammingLanguage = _mapper.Map<ProgrammingLanguage>(request);
+        var programmingLanguage = await _repository.GetAsync(x=>x.Id == request.Id);
+        var mappedProgrammingLanguage = _mapper.Map(request, programmingLanguage); 
         var updatedProgrammingLanguage = await _repository.UpdateAsync(mappedProgrammingLanguage);
         var updatedProgrammingLanguageDto = _mapper.Map<UpdatedProgrammingLanguageDto>(updatedProgrammingLanguage);
         return updatedProgrammingLanguageDto;

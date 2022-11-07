@@ -24,8 +24,9 @@ namespace Kodlama.io.Devs.Application.Features.Technologies.Commands.Update
 
         public async Task<UpdatedTechnologyDto> Handle(UpdatedTechnologyCommand request, CancellationToken cancellationToken)
         {
-            var mappedTechnology = _mapper.Map<Technology>(request);
-            var updatedTechnology = await _technologyRepository.DeleteAsync(mappedTechnology);
+            var technology = await _technologyRepository.GetAsync(x=>x.Id == request.Id);
+            var mappedTechnology = _mapper.Map(request,technology);
+            var updatedTechnology = await _technologyRepository.UpdateAsync(mappedTechnology);
             var updatedTechnologyDto = _mapper.Map<UpdatedTechnologyDto>(updatedTechnology);
             return updatedTechnologyDto;
         }

@@ -1,6 +1,8 @@
 ﻿using Core.Application.Requests;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetList;
 using Kodlama.io.Devs.Application.Features.Technologies.Commands.Create;
+using Kodlama.io.Devs.Application.Features.Technologies.Commands.Delete;
+using Kodlama.io.Devs.Application.Features.Technologies.Commands.Update;
 using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetById;
 using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetList;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +17,7 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateTechnologyCommand command)
         {
-            var result = await Mediator.Send(command);
+            var result = await Mediator!.Send(command);
             return Created("",result);
         }
 
@@ -23,14 +25,28 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] PageRequest request)
         {
             GetListTechnologyQuery query = new () { PageRequest  = request};
-            var result = await Mediator.Send(query);
+            var result = await Mediator!.Send(query);
             return Ok(result);
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdTechnologyQuery query)
         {
-            var result = await Mediator.Send(query);
+            var result = await Mediator!.Send(query);
+            return Ok(result);
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete([FromRoute] DeletedTechnologyCommand command)
+        {
+            var result = await Mediator!.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdatedTechnologyCommand command)
+        {
+            var result = await Mediator!.Send(command);
             return Ok(result);
         }
     }

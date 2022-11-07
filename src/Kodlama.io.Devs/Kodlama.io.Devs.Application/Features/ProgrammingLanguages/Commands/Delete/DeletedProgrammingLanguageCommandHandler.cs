@@ -19,7 +19,7 @@ public class DeletedProgrammingLanguageCommandHandler:IRequestHandler<DeleteProg
 
     public async Task<DeletedProgrammingLanguageDto> Handle(DeleteProgrammingLanguageCommand request, CancellationToken cancellationToken)
     {
-        var mappedProgrammingLanguage = _mapper.Map<ProgrammingLanguage>(request);
+        var mappedProgrammingLanguage = await _repository.GetAsync(x=>x.Id == request.Id);
         var deletedProgrammingLanguage = await _repository.DeleteAsync(mappedProgrammingLanguage);
         var deletedProgrammingLanguageDto = _mapper.Map<DeletedProgrammingLanguageDto>(deletedProgrammingLanguage);
         return deletedProgrammingLanguageDto;
