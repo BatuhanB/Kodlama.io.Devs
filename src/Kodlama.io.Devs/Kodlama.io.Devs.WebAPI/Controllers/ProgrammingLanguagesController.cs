@@ -2,7 +2,7 @@
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.Create;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetById;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetList;
-using Microsoft.AspNetCore.Http;
+using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetListWithTechnologies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kodlama.io.Devs.WebAPI.Controllers
@@ -22,6 +22,14 @@ namespace Kodlama.io.Devs.WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] PageRequest request)
         {
             GetListProgrammingLanguageQuery query = new() { PageRequest = request };
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetListWithTechnologies([FromQuery] PageRequest request)
+        {
+            GetListWithTechnologiesQuery query = new() { PageRequest = request };
             var result = await Mediator.Send(query);
             return Ok(result);
         }
